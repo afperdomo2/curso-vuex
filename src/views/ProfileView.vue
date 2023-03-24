@@ -3,11 +3,28 @@
     <div class="box">
       <img src="/avatars/avatar.jpg" alt="avatar" />
       <label for="username">Nombre de usuario</label>
-      <input type="text" placeholder="Jane Smith" />
+      <input
+        type="text"
+        placeholder="Ingrese un valor..."
+        :value="store.username"
+        @input="store.setUsername($event.target.value)"
+      />
       <button>Acceder</button>
     </div>
   </div>
 </template>
+
+<script>
+import store from "../store/store";
+
+export default {
+  data() {
+    return {
+      store,
+    };
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .profile {
