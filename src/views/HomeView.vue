@@ -1,3 +1,31 @@
+<template>
+  <div class="home">
+    <aside>
+      <InputSearch v-model="search" />
+      <ProfileCard
+        :avatar="profile.avatar"
+        :username="username"
+        :status="profile.status"
+      />
+      <RouterLink to="/" class="channels-title"
+        >Canales <Icon icon="carbon:hashtag"
+      /></RouterLink>
+      <div class="channels">
+        <ChatItem
+          v-for="channel in channels"
+          :key="channel.id"
+          :id="channel.id"
+          :name="channel.name"
+          :messages="channel.messages"
+        />
+      </div>
+    </aside>
+    <main>
+      <RouterView />
+    </main>
+  </div>
+</template>
+
 <script>
 import { RouterView, RouterLink } from "vue-router";
 import InputSearch from "@/components/InputSearch.vue";
@@ -44,34 +72,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <div class="home">
-    <aside>
-      <InputSearch v-model="search" />
-      <ProfileCard
-        :avatar="profile.avatar"
-        :username="username"
-        :status="profile.status"
-      />
-      <RouterLink to="/" class="channels-title"
-        >Canales <Icon icon="carbon:hashtag"
-      /></RouterLink>
-      <div class="channels">
-        <ChatItem
-          v-for="channel in channels"
-          :key="channel.id"
-          :id="channel.id"
-          :name="channel.name"
-          :messages="channel.messages"
-        />
-      </div>
-    </aside>
-    <main>
-      <RouterView />
-    </main>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 .home {
