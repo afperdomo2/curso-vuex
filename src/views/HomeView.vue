@@ -4,7 +4,7 @@
       <InputSearch v-model="search" />
       <ProfileCard
         :avatar="profile.avatar"
-        :username="username"
+        :username="crazyName"
         :status="profile.status"
       />
       <RouterLink to="/" class="channels-title"
@@ -31,7 +31,7 @@ import { RouterView, RouterLink } from "vue-router";
 import InputSearch from "@/components/InputSearch.vue";
 import ProfileCard from "@/components/ProfileCard.vue";
 import ChatItem from "@/components/ChatItem.vue";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   components: {
@@ -45,6 +45,7 @@ export default {
   data() {
     return {
       search: "",
+      crazyName: null,
       profile: {
         username: "Pepito Pérez",
         status: "active",
@@ -62,13 +63,15 @@ export default {
   },
 
   computed: {
-    hi() {
+    greet() {
       return "Hola mundo";
     },
     ...mapState(["username"]),
-    // ...mapState({
-    //   username: (state) => state.username,
-    // }),
+    ...mapGetters(["firstName", "lastName"]),
+  },
+
+  created() {
+    this.crazyName = this.firstName + "*" + this.lastName("-");
   },
 };
 </script>
