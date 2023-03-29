@@ -4,7 +4,8 @@
       <InputSearch v-model="search" />
       <ProfileCard
         :avatar="profile.avatar"
-        :username="crazyName"
+        :username="username"
+        :title="firstName('-')"
         :status="profile.status"
       />
       <RouterLink to="/" class="channels-title"
@@ -45,7 +46,6 @@ export default {
   data() {
     return {
       search: "",
-      crazyName: null,
       profile: {
         username: "Pepito Pérez",
         status: "active",
@@ -68,10 +68,6 @@ export default {
     },
     ...mapState(["username"]),
     ...mapGetters(["firstName", "lastName"]),
-  },
-
-  created() {
-    this.crazyName = this.firstName + "*" + this.lastName("-");
   },
 };
 </script>

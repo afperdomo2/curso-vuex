@@ -3,16 +3,19 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-      username: "Andrés.PeA",
+      username: "Andrés Per",
     };
   },
 
   getters: {
-    firstName: (state) => {
-      return state.username.split(".")[0];
+    firstName: (state) => (separator) => {
+      return state.username.split("").join(separator);
     },
-    lastName: (state) => (separator) => {
-      return state.username.split(".")[1].split("").join(separator);
+  },
+
+  mutations: {
+    updateUsername(state, newUsername) {
+      state.username = newUsername;
     },
   },
 });
