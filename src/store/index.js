@@ -1,4 +1,6 @@
 import { createStore } from "vuex";
+import { COMMIT_UPDATE_USERNAME } from "@/common/mutations-types";
+import { getUser } from "@/api";
 
 const store = createStore({
   // Representa el estado inicial de la aplicación
@@ -25,7 +27,7 @@ const store = createStore({
    * funciones síncronas que modifican el estado de la aplicación
    */
   mutations: {
-    updateUsername(state, newUsername) {
+    [COMMIT_UPDATE_USERNAME](state, newUsername) {
       state.username = newUsername;
     },
   },
@@ -36,9 +38,12 @@ const store = createStore({
    * que ejecutan múltiples mutaciones o interactúan con servicios externos
    */
   actions: {
-    updateUsername({ commit, state }, username) {
+    async updateUsername({ commit, state }, username) {
+      const user = await getUser(1);
+      console.log(user);
+
       // Hace uso de la mutación updateUsername
-      commit("updateUsername", username);
+      commit(COMMIT_UPDATE_USERNAME, username);
       console.log("User active:", state.active);
 
       console.log("✅ username actualizado:", username);
