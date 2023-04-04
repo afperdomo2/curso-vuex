@@ -66,8 +66,8 @@ export default {
     greet() {
       return "Hola mundo";
     },
-    ...mapState(["username"]),
-    ...mapGetters(["firstName", "lastName"]),
+    ...mapState("profile", ["username"]),
+    ...mapGetters("profile", ["firstName"]),
   },
 };
 </script>

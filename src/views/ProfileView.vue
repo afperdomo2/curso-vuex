@@ -23,13 +23,11 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      username: (state) => state.username,
-    }),
+    ...mapState("profile", ["username"]),
   },
 
   methods: {
-    ...mapActions(["updateUsername"]),
+    ...mapActions("profile", ["updateUsername"]),
   },
 };
 </script>
