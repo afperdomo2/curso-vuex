@@ -1,12 +1,20 @@
-import { COMMIT_UPDATE_USERNAME } from "@/common/mutations-types";
+import {
+  COMMIT_UPDATE_USERNAME,
+  COMMIT_SET_STATUS,
+} from "@/common/mutations-types";
 import { getUser } from "@/api";
 
 const module = {
+  /**
+   * permite crear un espacio de nombres para el módulo, lo que significa
+   * que todas las mutaciones, acciones y getters definidos en el módulo
+   * estarán contenidos en un espacio de nombres específico.
+   */
   namespaced: true,
 
   state() {
     return {
-      username: "Pepito.Perez",
+      username: "",
     };
   },
 
@@ -23,13 +31,15 @@ const module = {
   },
 
   actions: {
-    async updateUsername({ commit, state }, username) {
+    async updateUsername({ commit, state, rootState }, username) {
       const user = await getUser(1);
-      console.log(user);
 
       // Hace uso de la mutación updateUsername
       commit(COMMIT_UPDATE_USERNAME, username);
-      console.log("User active:", state.active);
+
+      // Usar un mutación del root state
+      const status = state.username ? "active" : null;
+      commit(COMMIT_SET_STATUS, status, { root: true });
 
       console.log("✅ username actualizado:", username);
     },

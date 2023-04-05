@@ -6,8 +6,8 @@
         :avatar="profile.avatar"
         :username="username"
         :title="firstName('-')"
-        :status="profile.status"
-      />
+        :status="status"
+      /> -- {{ status }}
       <RouterLink to="/" class="channels-title"
         >Canales <Icon icon="carbon:hashtag"
       /></RouterLink>
@@ -47,8 +47,6 @@ export default {
     return {
       search: "",
       profile: {
-        username: "Pepito Pérez",
-        status: "active",
         avatar: "/avatars/avatar.jpg",
       },
       channels: [
@@ -66,8 +64,16 @@ export default {
     greet() {
       return "Hola mundo";
     },
+    ...mapState(["status"]),
     ...mapState("profile", ["username"]),
+    //...mapState(["profile/username"]),
+
     ...mapGetters("profile", ["firstName"]),
+    //...mapGetters(["profile/firstName"]),
+
+    // Forma de mapear desde múltiples módulos:
+    //...mapGetters("users", ["name", "date", "status"]),
+    //...mapGetters("person", ["id", "fullName", "age"]),
   },
 };
 </script>

@@ -1,10 +1,13 @@
 import { createStore } from "vuex";
-import Profile from "@/store/modules/profile";
+import profile from "@/store/modules/profile";
+import { COMMIT_SET_STATUS } from "../common/mutations-types";
 
 const store = createStore({
   // Representa el estado inicial de la aplicación
   state() {
-    return {};
+    return {
+      status: null,
+    };
   },
 
   /**
@@ -18,7 +21,11 @@ const store = createStore({
    * Fefine las funciones para modificar el estado. Las mutaciones son
    * funciones síncronas que modifican el estado de la aplicación
    */
-  mutations: {},
+  mutations: {
+    [COMMIT_SET_STATUS](state, value) {
+      state.status = value;
+    },
+  },
 
   /**
    * Define las acciones que pueden ser llamadas desde los componentes para
@@ -33,7 +40,7 @@ const store = createStore({
    * el estado de la aplicación
    */
   modules: {
-    profile: Profile,
+    profile,
   },
 });
 
