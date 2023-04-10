@@ -7,7 +7,7 @@
         :username="username"
         :title="firstName('-')"
         :status="status"
-      /> -- {{ status }}
+      />
       <RouterLink to="/" class="channels-title"
         >Canales <Icon icon="carbon:hashtag"
       /></RouterLink>
