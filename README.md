@@ -27,3 +27,17 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## Docker
+
+### Build the image
+
+```sh
+docker build -t chatapp .
+```
+
+### Run the container
+
+```sh
+docker run -p 3000:3000 chatapp
+```
