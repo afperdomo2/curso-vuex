@@ -3,7 +3,7 @@
     <header>
       <h2>{{ title }}</h2>
       <div class="people-list">
-        <div class="people-item" v-for="p in people" :key="p.id">
+        <div class="people-item" v-for="p in getContacts" :key="p.id">
           <img :src="p.avatar" :alt="p.name" />
         </div>
       </div>
@@ -40,20 +40,17 @@ export default {
   data() {
     return {
       title: "Nombre del canal",
-      people: [
-        { id: 1, name: "Tú", avatar: "/avatars/avatar.jpg" },
-        { id: 2, name: "Jason", avatar: "/avatars/avatar-02.jpg" },
-        { id: 3, name: "Janet", avatar: "/avatars/avatar-03.jpg" },
-      ],
       channelId: null,
     };
   },
   computed: {
     ...mapGetters("messages", ["getMessages"]),
+    ...mapGetters("contacts", ["getContacts", "getContactById"]),
+    ...mapGetters("channels", ["getChannels", "getChannelById"]),
 
     messagesView() {
       return this.getMessages(this.channelId)?.map((message) => {
-        const author = this.people.find((p) => p.id === message.author);
+        const author = this.getContactById(message.author);
         if (!author) return message;
         return {
           ...message,
@@ -68,6 +65,7 @@ export default {
       immediate: true,
       handler(id) {
         this.channelId = id;
+        this.title = this.getChannelById(id).name;
         this.scrollToBottom();
       },
     },

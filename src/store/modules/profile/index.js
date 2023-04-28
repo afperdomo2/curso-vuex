@@ -14,7 +14,13 @@ const module = {
 
   state() {
     return {
+      id: 1,
       username: "",
+      details: {
+        id: 1,
+        name: "Tú",
+        avatar: "/avatars/avatar.jpg",
+      },
     };
   },
 

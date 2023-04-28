@@ -11,11 +11,15 @@ const module = {
       ],
     };
   },
-
   getters: {
     getChannels: (state) => (search) => {
       return state.channels.filter(({ name }) =>
         name.toLowerCase().includes(search.toLowerCase())
+      );
+    },
+    getChannelById: (state) => (channelId) => {
+      return state.channels.find(
+        ({ id }) => parseInt(id) === parseInt(channelId)
       );
     },
   },
