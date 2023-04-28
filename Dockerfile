@@ -16,8 +16,8 @@ COPY . .
 # Construimos la aplicación
 RUN npm run build
 
-# Exponemos el puerto 3000
-EXPOSE 3000
+# Exponemos el puerto 5050
+EXPOSE 5050
 
 # Arrancamos la aplicación
 CMD [ "npm", "run", "preview" ]

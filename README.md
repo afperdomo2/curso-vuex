@@ -33,11 +33,11 @@ npm run build
 ### Build the image
 
 ```sh
-docker build -t chatapp .
+docker build -t chatapp-img .
 ```
 
 ### Run the container
 
 ```sh
-docker run -p 3000:3000 chatapp
+docker run -d -p 3001:5050 --name chatapp chatapp-img
 ```
