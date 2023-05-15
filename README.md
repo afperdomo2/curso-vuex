@@ -33,11 +33,11 @@ npm run build
 ### Build the image
 
 ```sh
-docker build -t chatapp-img .
+docker build -t chatapp-vuex-img .
 ```
 
 ### Run the container
 
 ```sh
-docker run -d -p 3001:5050 --name chatapp chatapp-img
+docker run -d -p 3001:8080 --name chatapp-vuex chatapp-vuex-img
 ```
